@@ -143,23 +143,41 @@ function ProductList({ onCartClick, onHome }) {
   return (
     <div>
       <nav className="navbar">
-        <a className="navbar-brand" href="#" onClick={(e) => { e.preventDefault(); onHome(); }}>
+        <a
+          className="navbar-brand"
+          href="#"
+          onClick={(e) => { e.preventDefault(); onHome(); }}
+        >
           Paradise Nursery
         </a>
         <ul className="navbar-links">
           <li>
-            <a href="#" onClick={(e) => { e.preventDefault(); onHome(); }}>Home</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); onHome(); }}>
+              Home
+            </a>
           </li>
           <li>
             <a href="#">Plants</a>
           </li>
           <li>
-            <div className="cart-icon" onClick={onCartClick} role="button" aria-label="Shopping Cart">
-              <span>&#128722;</span>
+            <a href="#" onClick={(e) => { e.preventDefault(); onCartClick(); }}>
+              Cart
               {totalCartCount > 0 && (
-                <span className="cart-count">{totalCartCount}</span>
+                <span
+                  style={{
+                    marginLeft: '6px',
+                    backgroundColor: '#ff5722',
+                    color: 'white',
+                    borderRadius: '50%',
+                    padding: '2px 7px',
+                    fontSize: '0.75rem',
+                    fontWeight: '700',
+                  }}
+                >
+                  {totalCartCount}
+                </span>
               )}
-            </div>
+            </a>
           </li>
         </ul>
       </nav>
