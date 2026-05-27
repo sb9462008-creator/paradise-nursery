@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { Provider } from 'react-redux';
-import { store } from './store';
 import ProductList from './components/ProductList';
 import CartItem from './components/CartItem';
 import './App.css';
@@ -29,28 +27,35 @@ function App() {
     setShowCart(false);
   };
 
+  if (showLanding) {
+    return (
+      <div className="landing-page">
+        <div className="landing-content">
+          <h1>Paradise Nursery</h1>
+          <p>Where Green Meets Serenity</p>
+          <button className="get-started-btn" onClick={handleGetStarted}>
+            Get Started
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (showCart) {
+    return (
+      <CartItem
+        onContinueShopping={handleShowProducts}
+        onHome={handleHome}
+        onCartClick={handleShowCart}
+      />
+    );
+  }
+
   return (
-    <Provider store={store}>
-      {showLanding ? (
-        <div className="landing-page">
-          <div className="landing-content">
-            <h1>Paradise Nursery</h1>
-            <p>Where Green Meets Serenity</p>
-            <button className="get-started-btn" onClick={handleGetStarted}>
-              Get Started
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div>
-          {showCart ? (
-            <CartItem onContinueShopping={handleShowProducts} onHome={handleHome} onCartClick={handleShowCart} />
-          ) : (
-            <ProductList onCartClick={handleShowCart} onHome={handleHome} />
-          )}
-        </div>
-      )}
-    </Provider>
+    <ProductList
+      onCartClick={handleShowCart}
+      onHome={handleHome}
+    />
   );
 }
 
